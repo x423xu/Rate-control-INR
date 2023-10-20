@@ -20,7 +20,17 @@ def main():
     logger = pl.loggers.CSVLogger(save_dir = '.', name = 'log', version = time_str)
     model = PLSiren(args)
     loader = UVGDataModule(args)
-    trainer = pl.Trainer(accelerator='gpu' , num_sanity_val_steps=2, max_epochs=500,check_val_every_n_epoch=50 ,devices = 1, enable_progress_bar=False, logger=logger, profiler=pl.profilers.SimpleProfiler())
+    kwargs = {
+        'accelerator': 'gpu',
+        'num_sanity_val_steps': 2,
+        'max_epochs': 30,
+        'check_val_every_n_epoch': 50,
+        'devices': 2,
+        'enable_progress_bar': False,
+        'logger': logger,
+        'profiler': pl.profilers.AdvancedProfiler(dirpath="log/"+time_str, filename = 'perf_log'),
+    }
+    trainer = pl.Trainer(**kwargs)
     trainer.fit(model, loader)
 
     '''
