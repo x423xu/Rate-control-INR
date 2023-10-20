@@ -1,6 +1,6 @@
 from config import args
-from model import Siren, GridSiren,GridSiren2
-from data import UVGDataModule
+from models.model import Siren, GridSiren,GridSiren2
+from data.data import UVGDataModule
 
 import torch
 from pytorch_msssim import ssim

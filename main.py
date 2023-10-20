@@ -4,8 +4,8 @@ Main file for the project Rate-control-INR
 
 import pytorch_lightning as pl
 from config import args
-from model import PLSiren
-from data import UVGDataModule
+from models.model import PLSiren
+from data.data import UVGDataModule
 from datetime import datetime
 
 # Get the current time
